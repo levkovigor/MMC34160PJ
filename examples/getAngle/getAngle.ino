@@ -1,3 +1,31 @@
+/************************************************************************
+
+  Test of the MMC34160PJ
+
+*************************************************************************
+
+  Description: MMC34160PJ
+  The three components (X, Y, Z) of the magnetic field and then its module
+  and its angle are displayed in the serial monitor
+
+  Wiring
+  Module<----------> Arduino
+  VCC     to        3V3
+  GND     to        GND
+  SCL     to        A5 (SCL)
+  SDA     to        A4 (SDA)
+
+*************************************************************************/
+
+// The earth's magnetic field varies according to its location.
+// Add or subtract a constant to get the right value
+// of the magnetic field using the following site
+// http://www.ngdc.noaa.gov/geomag-web/#declination
+
+#define DECLINATION -5.55 // declination (in degrees) in Cluj-Napoca (Romania).
+
+/************************************************************************/
+
 #include <Wire.h>
 #include <MMC34160PJ.h>
 
@@ -19,6 +47,8 @@ void setup() {
   if(!magnetometer.init()){
     Serial.println("MMC34160PJ not connected!");
   }
+
+  magnetometer.setDeclination(DECLINATION);
 
 }
 
