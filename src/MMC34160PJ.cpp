@@ -72,7 +72,7 @@ bool MMC34160PJ::readData(){
     unsigned long _t = millis() + 1000;
     while (!flag) {
         _wire->beginTransmission(i2cAddress);
-        _wire->write(0x06);
+        _wire->write(byte(0x06));
         _wire->endTransmission();
         _wire->requestFrom(i2cAddress,1);
         if(_wire->available()){
@@ -87,7 +87,7 @@ bool MMC34160PJ::readData(){
 
     byte tmp[6] = {0, 0, 0, 0, 0, 0};
     _wire->beginTransmission(i2cAddress);
-    _wire->write(0x00);
+    _wire->write(byte(0x00));
     _wire->endTransmission();
     _wire->requestFrom(i2cAddress,6);
     if(_wire->available()){
