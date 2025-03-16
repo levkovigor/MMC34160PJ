@@ -92,7 +92,7 @@ bool MMC34160PJ::readData(){
     _wire->requestFrom(i2cAddress,6);
     if(_wire->available()){
         for (int i = 0; i < 6; i++) {
-            tmp[i] = Wire.read(); //save it
+            tmp[i] = _wire->read(); //save it
         }
     } else {
         return false;
